@@ -1,6 +1,7 @@
 ﻿using APIGuia.Context;
 using APIGuia.DTO;
 using APIGuia.Model;
+using APIGuia.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,17 +20,23 @@ public class LoginController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<User>> Login(LoginDTO loginDTO)
+    public async Task<ActionResult<dynamic>> AuthenticateAsync([FromBody] LoginDTO loginDTO)
     {
-        var userDB = await _context.Usuarios.FirstOrDefaultAsync(u => u.Email == loginDTO.Email);
+        var userDB = await _context.Usuarios.FirstOrDefaultAsync(u => u.Email == loginDTO.Email.ToLower());
 
         if (userDB == null || !BCrypt.Net.BCrypt.Verify(loginDTO.password, userDB.password))
         {
             return Unauthorized("Email ou senha incorretos.");
         }
 
-        userDB.password = null;
+        var token = TokenService.GenerateToken(userDB);
 
-        return userDB;
+        userDB.password = "";
+
+        return new
+        {
+            user = userDB,
+            token
+        };
     }
 }

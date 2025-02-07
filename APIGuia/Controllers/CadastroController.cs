@@ -20,7 +20,7 @@ public class CadastroController : ControllerBase
     }
 
     [HttpPost]
-    [Authorize]
+    [Authorize(Roles = "webmaster")]
     public async Task<ActionResult<User>> PostUser(UserDTO userDto)
     {
         if (string.IsNullOrWhiteSpace(userDto.Nome) || string.IsNullOrWhiteSpace(userDto.Email) || string.IsNullOrWhiteSpace(userDto.password))
@@ -36,9 +36,9 @@ public class CadastroController : ControllerBase
         var user = new User
         {
             Nome = userDto.Nome,
-            Email = userDto.Email,
-            TipoFuncionario = userDto.TipoFuncionario,
-            password = BCrypt.Net.BCrypt.HashPassword(userDto.password) // Gera hash seguro da senha
+            Email = userDto.Email.ToLower(),
+            TipoFuncionario = userDto.TipoFuncionario.ToLower(),
+            password = BCrypt.Net.BCrypt.HashPassword(userDto.password) 
         };
 
         _context.Usuarios.Add(user);
