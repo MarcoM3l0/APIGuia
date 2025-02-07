@@ -17,23 +17,26 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddMemoryCache();
 builder.Services.AddAuthorization();
 
+// Convertendo a chave de segurança em um array de bytes para ser usada na geração do token JWT
 var key = Encoding.ASCII.GetBytes(Settings.secret);
 
+// Configuração do JWT
 builder.Services.AddAuthentication(x =>
     {
+        // Define o esquema de autenticação padrão como JWT
         x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
         x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
     })
-    .AddJwtBearer(x =>
+    .AddJwtBearer(x => // Configuração middleware de autenticação JWT Bearer
     {
-        x.RequireHttpsMetadata = false;
-        x.SaveToken = true;
+        x.RequireHttpsMetadata = false; // Não requer HTTPS
+        x.SaveToken = true; // Salva o token recebido
         x.TokenValidationParameters = new TokenValidationParameters
         {
-            ValidateIssuerSigningKey = true,
-            IssuerSigningKey = new SymmetricSecurityKey(key),
-            ValidateIssuer = false,
-            ValidateAudience = false
+            ValidateIssuerSigningKey = true, // Valida a chave de assinatura do emissor
+            IssuerSigningKey = new SymmetricSecurityKey(key), // Chave de segurança
+            ValidateIssuer = false, // Não valida o emissor
+            ValidateAudience = false // Não valida o público-alvo
         };
     });
 
