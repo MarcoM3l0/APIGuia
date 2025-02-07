@@ -1,5 +1,6 @@
 ﻿using APIGuia.Context;
 using APIGuia.DTO;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
@@ -19,6 +20,7 @@ public class FaturamentoController : ControllerBase
     }
 
     [HttpGet]
+    [Authorize]
     public async Task<ActionResult<FaturamentoDTO>> GetFaturamentoMensal(
     [FromQuery] int ano,
     [FromQuery] int mes)
