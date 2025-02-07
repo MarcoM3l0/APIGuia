@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace APIGuia.Model;
 
+// Essa classe é um model para a entity Cliente
 [Table("Clientes")]
 public class Cliente
 {
