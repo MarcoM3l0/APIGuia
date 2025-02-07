@@ -1,5 +1,6 @@
 ﻿namespace APIGuia.DTO;
 
+// Essa classe é um DTO (Data Transfer Object) que representa a entity Faturamento.
 public class FaturamentoDTO
 {
     public int Ano { get; set; }

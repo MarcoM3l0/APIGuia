@@ -1,5 +1,6 @@
 ﻿namespace APIGuia.DTO;
 
+// Essa classe é um DTO (Data Transfer Object) que representa a entity Reserva.
 public class ReservaDTO
 {
     public int ReservaId { get; set; }

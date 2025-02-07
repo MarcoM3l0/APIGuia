@@ -1,5 +1,6 @@
 ﻿namespace APIGuia.DTO;
 
+// Essa classe é um DTO (Data Transfer Object) que representa a entity Pagination.
 public class PaginationDTO<T>
 {
     public IEnumerable<T>? Dados { get; set; }

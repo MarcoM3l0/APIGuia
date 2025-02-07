@@ -2,6 +2,7 @@
 
 namespace APIGuia.DTO;
 
+// Essa classe é um DTO (Data Transfer Object) que representa a entity User.
 public class UserDTO
 {
     public string? Nome { get; set; }
