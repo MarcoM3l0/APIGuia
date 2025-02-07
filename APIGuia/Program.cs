@@ -40,13 +40,16 @@ builder.Services.AddAuthentication(x =>
         };
     });
 
+// Configuração do banco de dados
 string? mysqlConnection = builder.Configuration.GetConnectionString("DefaultConnection");
 
+// Verifica se a string de conexão foi carregada corretamente
 if (string.IsNullOrEmpty(mysqlConnection))
 {
     throw new Exception("Erro: a string de conexão 'DefaultConnection' não foi carregada corretamente. Verifique o appsettings.json.");
 }
 
+// Adiciona o contexto do banco de dados
 builder.Services.AddDbContext<APIGuiaDBContext>(options =>
                                                     options.UseMySql(mysqlConnection,
                                                     ServerVersion.AutoDetect(mysqlConnection)));
