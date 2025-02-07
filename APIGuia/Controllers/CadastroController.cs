@@ -1,6 +1,7 @@
 ﻿using APIGuia.Context;
 using APIGuia.DTO;
 using APIGuia.Model;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -19,6 +20,7 @@ public class CadastroController : ControllerBase
     }
 
     [HttpPost]
+    [Authorize]
     public async Task<ActionResult<User>> PostUser(UserDTO userDto)
     {
         if (string.IsNullOrWhiteSpace(userDto.Nome) || string.IsNullOrWhiteSpace(userDto.Email) || string.IsNullOrWhiteSpace(userDto.password))
