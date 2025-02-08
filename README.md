@@ -46,6 +46,14 @@ dotnet ef database update
 
 Isso criará o banco de dados e as tabelas necessárias.
 
+Caso o Entity Framework Core Tools não esteja instalado:
+- Se você ainda não tem as ferramentas do Entity Framework Core instaladas globalmente, execute o seguinte comando:
+  
+```bash
+dotnet tool install --global dotnet-ef
+```
+Isso instalará as ferramentas necessárias para rodar os comandos dotnet ef.
+
 ### Configuração do JWT:
 
 A chave secreta para geração de tokens JWT está definida na classe `Settings`:
