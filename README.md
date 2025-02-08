@@ -111,6 +111,24 @@ Exemplo de corpo da requisição:
   "password": "senha123"
 }
 ```
+Exemplo de resposta:
+
+```json
+{
+  "user": {
+    "userId": 8,
+    "nome": "José Marco",
+    "email": "jose.marco@teste.com",
+    "password": "",
+    "tipoFuncionario": "webmaster"
+  },
+  "token": "..."
+}
+```
+
+Explicação:
+- `user`: Contém os dados do usuário autenticado, com exceção da senha (password é deixado vazio para garantir a segurança).
+- `token`: O token JWT gerado após a autenticação bem-sucedida. Esse token pode ser usado para autorizar o usuário a fazer requisições em endpoints protegidos.
 
 ### 👤 Cadastro de Usuários
 **POST `/Cadastro`**: Cria um novo usuário (acesso restrito a usuários com a role "webmaster").
@@ -122,7 +140,15 @@ Exemplo de corpo da requisição:
   "nome": "Novo Usuário",
   "email": "novo@exemplo.com",
   "password": "senha123",
-  "tipoFuncionario": "admin"
+  "tipoFuncionario": "webmaster ou suporte"
+}
+```
+
+Exemplo de resposta (com mensagem de sucesso):
+
+```json
+{
+  "message": "Usuário cadastrado com sucesso!"
 }
 ```
 
