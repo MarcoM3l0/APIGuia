@@ -43,7 +43,7 @@ public class CadastroController : ControllerBase
         {
             Nome = userDto.Nome,
             Email = userDto.Email.ToLower(),
-            TipoFuncionario = userDto.TipoFuncionario.ToLower(), 
+            TipoFuncionario = userDto.TipoFuncionario?.ToLower(), 
             password = BCrypt.Net.BCrypt.HashPassword(userDto.password) // Criptografa a senha
         };
 
@@ -51,27 +51,8 @@ public class CadastroController : ControllerBase
         _context.Usuarios.Add(user);
         await _context.SaveChangesAsync();
 
-        // Retorna o usuário criado com o status 201 (Created)
-        return CreatedAtAction("GetUser", new { id = user.UserId }, user);
-    }
-
-
-
-    // Endpoint para obter um usuário
-    [HttpGet(Name = "GetUser")]
-    public async Task<ActionResult<User>> GetUser(int id)
-    {
-        // Busca o usuário no banco de dados pelo ID
-        var user = await _context.Usuarios.FindAsync(id);
-
-        // Retorna 404 se o usuário não for encontrado
-        if (user == null)
-        {
-            return NotFound();
-        }
-
-        // Retorna o usuário encontrado
-        return Ok(new UserDTO(user));
+        // Retorna uma mensagem de sucesso
+        return Ok(new { message = "Usuário cadastrado com sucesso!" });
     }
 
 
