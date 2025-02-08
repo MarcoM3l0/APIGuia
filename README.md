@@ -11,7 +11,7 @@ Antes de rodar o projeto, certifique-se de ter instalado:
 
 - [**.NET SDK**](https://dotnet.microsoft.com/en-us/download) (versão 8.0 ou superior)
 - [**Visual Studio**](https://visualstudio.microsoft.com/) ou [**Visual Studio Code**](https://code.visualstudio.com/)
-- **MySql** ou outro banco de dados compatível com Entity Framework Core
+- [**MySql**](https://dev.mysql.com/downloads/installer/) ou outro banco de dados compatível com Entity Framework Core
 - [**Git**](https://git-scm.com/) (opcional, para clonar o repositório)
 
 ## ⚙️ Configuração do Projeto
