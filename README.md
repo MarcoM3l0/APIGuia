@@ -132,6 +132,9 @@ Explicação:
 
 ### 👤 Cadastro de Usuários
 **POST `/Cadastro`**: Cria um novo usuário (acesso restrito a usuários com a role "webmaster").
+  - Somente usuários com a role "webmaster" podem criar novos usuários.
+  - Usuários com a role "suporte" podem fazer todas as ações, exceto criar novos usuários.
+  - Qualquer outro papel (role) não terá permissão para realizar nenhuma requisição nos endpoints.
 
 Exemplo de corpo da requisição:
 
